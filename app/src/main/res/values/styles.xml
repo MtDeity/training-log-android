@@ -8,4 +8,13 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <style name="tabStyle">
+        <item name="tabTextAppearance">@style/MyCustomTabTextAppearance</item>
+    </style>
+    <style name="MyCustomTabTextAppearance">
+        <item name="android:textSize">9sp</item>
+        <item name="textAllCaps">true</item>
+    </style>
+
 </resources>
