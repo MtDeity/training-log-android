@@ -3,6 +3,7 @@ package com.example.traininglog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.core.content.edit
 import androidx.preference.PreferenceManager
 
@@ -22,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         val hasToken = !accessToken.isNullOrEmpty()
 
         if (hasToken) {
-            val intent = Intent(this, TrainingActivity::class.java)
+            val intent = Intent(this, HomeActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
         } else {
