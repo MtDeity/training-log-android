@@ -3,7 +3,6 @@ package com.example.traininglog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import androidx.core.content.edit
 import androidx.preference.PreferenceManager
 
