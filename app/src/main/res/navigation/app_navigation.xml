@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_navigation.xml"
+    app:startDestination="@+id/trainingFragment">
+
+    <fragment
+        android:id="@+id/trainingFragment"
+        android:name="com.example.traininglog.TrainingFragment"
+        android:label="fragment_training"
+        tools:layout="@layout/fragment_training" />
+
+    <fragment
+        android:id="@+id/routineFragment"
+        android:name="com.example.traininglog.RoutineFragment"
+        android:label="fragment_routine"
+        tools:layout="@layout/fragment_routine" />
+
+    <fragment
+        android:id="@+id/measureFragment"
+        android:name="com.example.traininglog.MeasureFragment"
+        android:label="fragment_measure"
+        tools:layout="@layout/fragment_measure" />
+
+    <fragment
+        android:id="@+id/timerFragment"
+        android:name="com.example.traininglog.TimerFragment"
+        android:label="fragment_timer"
+        tools:layout="@layout/fragment_timer" />
+
+    <fragment
+        android:id="@+id/myPageFragment"
+        android:name="com.example.traininglog.MyPageFragment"
+        android:label="fragment_my_page"
+        tools:layout="@layout/fragment_my_page" />
+</navigation>
