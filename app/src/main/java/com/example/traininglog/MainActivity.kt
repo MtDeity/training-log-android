@@ -3,6 +3,7 @@ package com.example.traininglog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.content.edit
 import androidx.preference.PreferenceManager
 
 class MainActivity : AppCompatActivity() {
@@ -16,8 +17,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun hasAccount() {
         val pref = PreferenceManager.getDefaultSharedPreferences(application)
-//        pref.edit { putString("cached_access_token", "MJgQQMm7pq6aVieMgRuwfGcf") } // トークンあり
-//        pref.edit { putString("cached_access_token", "") } // トークンなし
+//        pref.edit { putString("cached_access_token", "T6EooQzVJmk5s3D3S1HhHFCk") } // トークンあり
+        pref.edit { putString("cached_access_token", "") } // トークンなし
         val accessToken = pref.getString("cached_access_token", "")
         val hasToken = !accessToken.isNullOrEmpty()
 

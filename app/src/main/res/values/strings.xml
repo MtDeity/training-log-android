@@ -16,7 +16,7 @@
     <string name="sw_sharing">プロフィールを公開する</string>
     <string name="status_public">公開</string>
     <string name="status_private">非公開</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tenSec">+10秒</string>
+    <string name="oneMin">+1分</string>
+    <string name="fiveMin">+5分</string>
 </resources>
