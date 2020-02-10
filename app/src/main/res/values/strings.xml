@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">TrainingLog</string>
     <string name="tv_email">メールアドレス</string>
+    <string name="tv_email_or_id">メールアドレスまたはID</string>
     <string name="tv_password">パスワード</string>
     <string name="bt_sign_in">ログイン</string>
     <string name="tv_jump_to_sign_in">新規登録はこちら</string>
@@ -12,7 +13,9 @@
     <string name="measure">計測</string>
     <string name="timer">タイマー</string>
     <string name="myPage">マイページ</string>
-    <string name="sw_public">トレーニング記録を公開する</string>
+    <string name="sw_sharing">プロフィールを公開する</string>
+    <string name="status_public">公開</string>
+    <string name="status_private">非公開</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
