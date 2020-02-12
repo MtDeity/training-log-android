@@ -41,7 +41,6 @@ class TimerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_timer, container, false)
 
         timerText.text = "3:00"
         val timer = MyCountDownTimer(3 * 60 * 1000, 100)
@@ -64,6 +63,8 @@ class TimerFragment : Fragment() {
                 }
             }
         }
+
+        return inflater.inflate(R.layout.fragment_timer, container, false)
     }
 
     override fun onResume() {

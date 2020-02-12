@@ -49,7 +49,7 @@ class SignInActivity : AppCompatActivity() {
             var urlConnection: HttpURLConnection? = null
 
             val paramsValue = JSONObject()
-            val email = params[0]
+            val email = params[0];
             val password = params[1]
             paramsValue.put("sign_in_text", email)
             paramsValue.put("password", password)
@@ -61,13 +61,15 @@ class SignInActivity : AppCompatActivity() {
 
             try {
                 urlConnection = url.openConnection() as HttpURLConnection
-                urlConnection.connectTimeout = 10000
-                urlConnection.readTimeout = 10000
+                urlConnection.connectTimeout = 100000
+                urlConnection.readTimeout = 100000
                 urlConnection.requestMethod = "POST"
                 urlConnection.addRequestProperty("Content-Type", "application/json; charset=UTF-8")
                 urlConnection.doOutput = true
                 urlConnection.doInput = true
+                Log.i("SignIn", "0")
                 urlConnection.connect()
+                Log.i("SignIn", "1")
                 val outputStream = PrintStream(urlConnection.outputStream)
                 outputStream.print(bodyParameter)
                 outputStream.close()
