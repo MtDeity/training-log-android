@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.fragment_timer.*
 class TimerFragment : Fragment() {
     private lateinit var soundPool: SoundPool
     private var soundResId = 0
+    private lateinit var timer: MyCountDownTimer
 
     inner class MyCountDownTimer(
         millisInFuture: Long,
@@ -38,7 +39,6 @@ class TimerFragment : Fragment() {
         }
 
         override fun onFinish() {
-            timerText.text = "0:00"
             soundPool.play(soundResId, 1.0f, 100f, 0, 0, 1.0f)
         }
     }
@@ -54,7 +54,7 @@ class TimerFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         var millisInFuture: Long = 3 * 60 * 1000
-        var timer = MyCountDownTimer(millisInFuture, 100)
+        timer = MyCountDownTimer(millisInFuture, 100)
 
         tenSec.setOnClickListener {
             millisInFuture += 1 * 10 * 1000
@@ -71,16 +71,17 @@ class TimerFragment : Fragment() {
             timer = MyCountDownTimer(millisInFuture, 100)
         }
 
-        playPause.setOnClickListener {
+        playStop.setOnClickListener {
             timer.isRunning = if (timer.isRunning) {
                 timer.cancel()
-                playPause.setImageResource(R.drawable.play)
+                timer = MyCountDownTimer(millisInFuture, 100)
+                playStop.setImageResource(R.drawable.play)
                 reset.isClickable = true
                 reset.imageTintList= ColorStateList.valueOf(getResources().getColor(android.R.color.black))
                 false
             } else {
                 timer.start()
-                playPause.setImageResource(R.drawable.pause)
+                playStop.setImageResource(R.drawable.stop)
                 reset.isClickable = false
                 reset.imageTintList= ColorStateList.valueOf(getResources().getColor(android.R.color.darker_gray))
                 true
@@ -115,6 +116,7 @@ class TimerFragment : Fragment() {
 
     override fun onPause() {
         super.onPause()
+        timer.cancel()
         soundPool.release()
     }
 }
