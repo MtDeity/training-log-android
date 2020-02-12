@@ -45,25 +45,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="150sp"
-        app:layout_constraintBottom_toTopOf="@+id/stop"
+        app:layout_constraintBottom_toBottomOf="@id/playPause"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/oneMin"
-        tools:text="3:00" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/stop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:src="@drawable/stop"
-        android:tint="@android:color/black"
-        app:backgroundTint="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/reset"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/playPause"
-        app:layout_constraintTop_toBottomOf="@+id/timerText" />
+        app:layout_constraintTop_toBottomOf="@+id/oneMin" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/playPause"
@@ -74,7 +59,7 @@
         android:tint="@android:color/black"
         app:backgroundTint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/stop"
+        app:layout_constraintEnd_toStartOf="@+id/reset"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/timerText" />
@@ -83,14 +68,13 @@
         android:id="@+id/reset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="true"
         android:src="@drawable/reset"
         android:tint="@android:color/black"
         app:backgroundTint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/stop"
+        app:layout_constraintStart_toEndOf="@+id/playPause"
         app:layout_constraintTop_toBottomOf="@+id/timerText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

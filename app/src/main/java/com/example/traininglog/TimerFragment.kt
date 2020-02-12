@@ -1,5 +1,6 @@
 package com.example.traininglog
 
+import android.content.res.ColorStateList
 import android.media.AudioAttributes
 import android.media.AudioManager
 import android.media.SoundPool
@@ -22,6 +23,12 @@ class TimerFragment : Fragment() {
     ) :
         CountDownTimer(millisInFuture, countDownInterval) {
 
+        init {
+            val minute = millisInFuture / 1000L / 60L
+            val second = millisInFuture / 1000L % 60L
+            timerText.text = "%1d:%2$02d".format(minute, second)
+        }
+
         var isRunning = false
 
         override fun onTick(millisUntilFinished: Long) {
@@ -40,31 +47,52 @@ class TimerFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_timer, container, false)
+    }
 
-        timerText.text = "3:00"
-        val timer = MyCountDownTimer(3 * 60 * 1000, 100)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        var millisInFuture: Long = 3 * 60 * 1000
+        var timer = MyCountDownTimer(millisInFuture, 100)
+
+        tenSec.setOnClickListener {
+            millisInFuture += 1 * 10 * 1000
+            timer = MyCountDownTimer(millisInFuture, 100)
+        }
+
+        oneMin.setOnClickListener {
+            millisInFuture += 1 * 60 * 1000
+            timer = MyCountDownTimer(millisInFuture, 100)
+        }
+
+        fiveMin.setOnClickListener {
+            millisInFuture += 5 * 60 * 1000
+            timer = MyCountDownTimer(millisInFuture, 100)
+        }
+
         playPause.setOnClickListener {
-            timer.isRunning = when
-                (timer.isRunning) {
-                true -> {
-                    timer.cancel()
-                    playPause.setImageResource(
-                        R.drawable.play
-                    )
-                    false
-                }
-                false -> {
-                    timer.start()
-                    playPause.setImageResource(
-                        R.drawable.pause
-                    )
-                    true
-                }
+            timer.isRunning = if (timer.isRunning) {
+                timer.cancel()
+                playPause.setImageResource(R.drawable.play)
+                reset.isClickable = true
+                reset.imageTintList= ColorStateList.valueOf(getResources().getColor(android.R.color.black))
+                false
+            } else {
+                timer.start()
+                playPause.setImageResource(R.drawable.pause)
+                reset.isClickable = false
+                reset.imageTintList= ColorStateList.valueOf(getResources().getColor(android.R.color.darker_gray))
+                true
             }
         }
 
-        return inflater.inflate(R.layout.fragment_timer, container, false)
+        reset.setOnClickListener {
+            if (!timer.isRunning) {
+                millisInFuture = 0 * 60 * 1000
+                timer = MyCountDownTimer(millisInFuture, 100)
+            }
+        }
     }
 
     override fun onResume() {
