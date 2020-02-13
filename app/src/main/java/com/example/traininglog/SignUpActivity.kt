@@ -105,9 +105,13 @@ class SignUpActivity : AppCompatActivity() {
             } else {
                 val rootJSON = JSONObject(result)
                 val token = rootJSON.getString("token")
+                val id = rootJSON.getString("id")
                 Log.i("SignUpToken", token)
                 val pref = PreferenceManager.getDefaultSharedPreferences(application)
-                pref.edit { putString("cached_access_token", "Bearer $token") }
+                pref.edit {
+                    putString("cached_access_token", "Bearer $token")
+                    putString("ID", id)
+                }
                 val intent = Intent(applicationContext, HomeActivity::class.java)
                 startActivity(intent)
             }

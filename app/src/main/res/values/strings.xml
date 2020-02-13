@@ -19,4 +19,13 @@
     <string name="tenSec">+10秒</string>
     <string name="oneMin">+1分</string>
     <string name="fiveMin">+5分</string>
+    <string name="userEdit">アカウント編集</string>
+    <string name="userDelete">アカウント削除</string>
+    <string name="editDescription">編集する項目のみ入力してください。</string>
+    <string name="delete">削除する</string>
+    <string name="edit">編集する</string>
+    <string name="id">ID</string>
+    <string name="dialogMessage">本当に削除しますか。</string>
+    <string name="cancel">キャンセル</string>
+
 </resources>
