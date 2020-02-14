@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
 import kotlinx.android.synthetic.main.fragment_my_page.*
@@ -122,7 +123,11 @@ class MyPageFragment : Fragment() {
                 Log.i("EditError", "エラー")
             } else {
                 Log.i("EditSuccess", "成功")
-                
+                val text = "更新しました。"
+                val duration = Toast.LENGTH_LONG
+
+                val toast = Toast.makeText(this.context, text, duration)
+                toast.show()
             }
             return
         }
