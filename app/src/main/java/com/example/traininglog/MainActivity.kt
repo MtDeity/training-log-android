@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     private fun hasAccount() {
         val pref = PreferenceManager.getDefaultSharedPreferences(application)
 
-        pref.edit { putString("cached_access_token", "") }
+//        pref.edit { putString("cached_access_token", "") }
 
         val accessToken = pref.getString("cached_access_token", "")
         val hasToken = !accessToken.isNullOrEmpty()
