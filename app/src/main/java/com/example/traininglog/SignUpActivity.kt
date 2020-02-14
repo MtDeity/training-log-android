@@ -20,7 +20,7 @@ import java.net.HttpURLConnection
 import java.net.URL
 
 class SignUpActivity : AppCompatActivity() {
-    lateinit var sharing: String
+    private var sharing: String = "true"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

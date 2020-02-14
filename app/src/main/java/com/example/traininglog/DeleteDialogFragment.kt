@@ -54,8 +54,6 @@ class DeleteDialogFragment : DialogFragment() {
         }
 
         override fun doInBackground(vararg params: String): String {
-            return ""
-
             val pref = PreferenceManager.getDefaultSharedPreferences(this.context)
             val token = pref.getString("cached_access_token", "")
             val id = pref.getString("ID", "")
