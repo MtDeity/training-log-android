@@ -101,7 +101,7 @@ class SignInActivity : AppCompatActivity() {
                 Log.i("SignInToken", token)
                 val pref = PreferenceManager.getDefaultSharedPreferences(application)
                 pref.edit {
-                    putString("cached_access_token", "Bearer $token")
+                    putString("cached_access_token", token)
                     putString("ID", id)
                 }
                 val intent = Intent(applicationContext, HomeActivity::class.java)

@@ -11,6 +11,11 @@ import androidx.fragment.app.DialogFragment
 import kotlinx.android.synthetic.main.activity_sign_in.*
 
 class DeleteDialogFragment : DialogFragment() {
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+    }
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
             // Use the Builder class for convenient dialog construction
@@ -18,7 +23,7 @@ class DeleteDialogFragment : DialogFragment() {
             builder.setMessage(R.string.dialogMessage)
                 .setPositiveButton(R.string.delete,
                     DialogInterface.OnClickListener { dialog, id ->
-                        val receiver = DeleteReceiver()
+                        val receiver = DeleteReceiver(activity!!)
                         receiver.execute()
                     })
                 .setNegativeButton(R.string.cancel,

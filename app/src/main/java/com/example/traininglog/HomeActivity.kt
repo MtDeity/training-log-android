@@ -20,6 +20,7 @@ class HomeActivity : AppCompatActivity() {
                 R.id.trainingFragment, R.id.routineFragment, R.id.measureFragment, R.id.timerFragment, R.id.myPageFragment
             )
         )
+
         setupActionBarWithNavController(navController, appBarConfiguration)
         bottom_navigation.setupWithNavController(navController)
     }
