@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
+import android.widget.Switch
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
@@ -27,13 +29,16 @@ class MyPageFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_my_page, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        val accountReceiver = AccountReceiver(activity!!, etId, etEmail, swSharing)
+        accountReceiver.execute()
+
+        swSharing.isChecked = (sharing == "false")
         swSharing.setOnCheckedChangeListener { buttonView, isChecked ->
             sharing = if (isChecked) "false" else "true"
         }
@@ -47,12 +52,101 @@ class MyPageFragment : Fragment() {
             val name = etId.text.toString()
             val email = etEmail.text.toString()
 
-            val receiver = EditReceiver(activity!!)
-            receiver.execute(name, email, sharing)
+            val editReceiver = EditReceiver(activity!!)
+            editReceiver.execute(name, email, sharing)
 
             val inputMethodManager =
                 activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             inputMethodManager.hideSoftInputFromWindow(view?.windowToken, 0)
+        }
+    }
+
+    class AccountReceiver() : AsyncTask<String, String, String>() {
+
+        private var context: Context? = null
+        private var etId: EditText? = null
+        private var etEmail: EditText? = null
+        private var swSharing: Switch? = null
+
+        constructor(context: Context, etId: EditText, etEmail: EditText, swSharing: Switch) : this() {
+            this.context = context
+            this.etId = etId
+            this.etEmail = etEmail
+            this.swSharing = swSharing
+        }
+
+        override fun doInBackground(vararg params: String): String {
+            val pref = PreferenceManager.getDefaultSharedPreferences(this.context)
+            val token = pref.getString("cached_access_token", "")
+            val id = pref.getString("ID", "")
+
+            var result = ""
+            var urlConnection: HttpURLConnection? = null
+
+            val urlStr = "https://mukimukinoko5050.herokuapp.com/users/${id}"
+            val url = URL(urlStr)
+
+            try {
+                urlConnection = url.openConnection() as HttpURLConnection
+                urlConnection.connectTimeout = 100000
+                urlConnection.readTimeout = 100000
+                urlConnection.requestMethod = "GET"
+                urlConnection.addRequestProperty("Content-Type", "application/json; charset=UTF-8")
+                urlConnection.addRequestProperty("Authorization", "Bearer $token")
+                urlConnection.doOutput = false
+                urlConnection.doInput = true
+                urlConnection.connect()
+                Log.i("AccountSuccess", urlConnection.toString())
+                Log.i("AccountSuccess", "a")
+//                val outputStream = PrintStream(urlConnection.outputStream)
+//                outputStream.close()
+                Log.i("AccountSuccess", "b")
+
+                val inputStream = urlConnection.inputStream
+                Log.i("AccountSuccess", "c")
+                result = is2String(inputStream)
+                inputStream.close()
+                Log.i("AccountSuccess", result)
+            } catch (e: Exception) {
+                e.printStackTrace()
+
+                val errorStream = urlConnection?.errorStream
+                result = is2String(errorStream)
+                errorStream?.close()
+                Log.i("AccountError", result)
+            } finally {
+                urlConnection?.disconnect()
+                return result
+            }
+        }
+
+        override fun onPostExecute(result: String) {
+            if (result == "") {
+                Log.i("AccountError", "エラー")
+            } else {
+                Log.i("AccountSuccess", "成功")
+                val rootJSON = JSONObject(result)
+                val name = rootJSON.getString("name")
+                val email = rootJSON.getString("email")
+                val sharingBoolean = rootJSON.getBoolean("user_private")
+
+                this.etId?.setText(name)
+                this.etEmail?.setText(email)
+                this.swSharing?.isChecked = !sharingBoolean
+            }
+            return
+        }
+
+        private fun is2String(stream: InputStream?): String {
+            val sb = StringBuilder()
+            val reader = BufferedReader(InputStreamReader(stream!!, "UTF-8"))
+            var line = reader.readLine()
+            while (line != null) {
+                sb.append(line)
+                line = reader.readLine()
+            }
+            reader.close()
+            return sb.toString()
         }
     }
 
@@ -125,7 +219,6 @@ class MyPageFragment : Fragment() {
                 Log.i("EditSuccess", "成功")
                 val text = "更新しました。"
                 val duration = Toast.LENGTH_LONG
-
                 val toast = Toast.makeText(this.context, text, duration)
                 toast.show()
             }
@@ -134,7 +227,7 @@ class MyPageFragment : Fragment() {
 
         private fun is2String(stream: InputStream?): String {
             val sb = StringBuilder()
-            val reader = BufferedReader(InputStreamReader(stream, "UTF-8"))
+            val reader = BufferedReader(InputStreamReader(stream!!, "UTF-8"))
             var line = reader.readLine()
             while (line != null) {
                 sb.append(line)
@@ -143,7 +236,6 @@ class MyPageFragment : Fragment() {
             reader.close()
             return sb.toString()
         }
-
     }
 }
 
