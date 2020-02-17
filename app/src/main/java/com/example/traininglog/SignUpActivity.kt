@@ -66,7 +66,7 @@ class SignUpActivity : AppCompatActivity() {
             val bodyParameter = JSONObject()
             bodyParameter.put("sign_up_params", paramsValue)
 
-            val urlStr = "https://mukimukinoko5050.herokuapp.com/sign_up"
+            val urlStr = "https://mukimukiroku.herokuapp.com/sign_up"
             val url = URL(urlStr)
 
             try {

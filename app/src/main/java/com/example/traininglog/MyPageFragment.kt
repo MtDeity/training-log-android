@@ -83,7 +83,7 @@ class MyPageFragment : Fragment() {
             var result = ""
             var urlConnection: HttpURLConnection? = null
 
-            val urlStr = "https://mukimukinoko5050.herokuapp.com/users/${id}"
+            val urlStr = "https://mukimukiroku.herokuapp.com/users/${id}"
             val url = URL(urlStr)
 
             try {
@@ -178,7 +178,7 @@ class MyPageFragment : Fragment() {
             bodyParameter.put("user_update_params", paramsValue)
 
 
-            val urlStr = "https://mukimukinoko5050.herokuapp.com/users/${id}"
+            val urlStr = "https://mukimukiroku.herokuapp.com/users/${id}"
             val url = URL(urlStr)
 
             try {

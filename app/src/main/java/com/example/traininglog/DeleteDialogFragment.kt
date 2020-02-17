@@ -61,7 +61,7 @@ class DeleteDialogFragment : DialogFragment() {
             var result = ""
             var urlConnection: HttpURLConnection? = null
 
-            val urlStr = "https://mukimukinoko5050.herokuapp.com/users/${id}"
+            val urlStr = "https://mukimukiroku.herokuapp.com/users/${id}"
             val url = URL(urlStr)
 
             Log.i("token", token)
