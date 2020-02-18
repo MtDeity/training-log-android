@@ -82,7 +82,9 @@ class SignUpActivity : AppCompatActivity() {
                 outputStream.print(bodyParameter)
                 outputStream.close()
 
+                Log.i("SignUpSuccess", "a")
                 val inputStream = urlConnection.inputStream
+                Log.i("SignUpSuccess", "b")
                 result = is2String(inputStream)
                 inputStream.close()
                 Log.i("SignUpSuccess", result)
@@ -109,7 +111,7 @@ class SignUpActivity : AppCompatActivity() {
                 Log.i("SignUpToken", token)
                 val pref = PreferenceManager.getDefaultSharedPreferences(application)
                 pref.edit {
-                    putString("cached_access_token", "Bearer $token")
+                    putString("cached_access_token", token)
                     putString("ID", id)
                 }
                 val intent = Intent(applicationContext, HomeActivity::class.java)

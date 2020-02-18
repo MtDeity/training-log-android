@@ -101,7 +101,10 @@ class DeleteDialogFragment : DialogFragment() {
                 Log.i("DeleteError", "エラー")
             } else {
                 val pref = PreferenceManager.getDefaultSharedPreferences(this.context)
-                pref.edit { putString("cached_access_token", "") }
+                pref.edit {
+                    putString("cached_access_token", "")
+                    putString("ID", "")
+                }
                 val intent = Intent(this.context, SignInActivity::class.java)
                 // intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
                 // ContextCompat.startActivity(intent)
