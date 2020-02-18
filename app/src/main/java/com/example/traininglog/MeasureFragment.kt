@@ -2,10 +2,12 @@ package com.example.traininglog
 
 import android.app.DatePickerDialog
 import android.app.Dialog
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.DatePicker
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
@@ -26,28 +28,19 @@ class MeasureFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-
-        val date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+        val date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/[]M/[]d"))
         etDate.setText(date)
 
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
 
         etDate.setOnClickListener {
-            val dialogFragment = DatePickDialogFragment()
-            dialogFragment.show(fragmentManager!!, "")
+            val dialogFragment = DatePickerDialog(context!!, DatePickerDialog.OnDateSetListener { view, year, month, day ->
+                etDate.setText("${year}/${month+1}/${day}")
+            }, year, month, day)
+            dialogFragment.show()
         }
-    }
-}
-
-class DatePickDialogFragment : DialogFragment(), DatePickerDialog.OnDateSetListener {
-
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val c: Calendar = Calendar.getInstance()
-        val year: Int = c.get(Calendar.YEAR)
-        val month: Int = c.get(Calendar.MONTH)
-        val day: Int = c.get(Calendar.DAY_OF_MONTH)
-        return DatePickerDialog(context!!, this, year, month, day)
-    }
-
-    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
     }
 }
