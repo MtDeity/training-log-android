@@ -38,7 +38,7 @@ class MeasureFragment : Fragment() {
 
         etDate.setOnClickListener {
             val dialogFragment = DatePickerDialog(context!!, DatePickerDialog.OnDateSetListener { view, year, month, day ->
-                etDate.setText("${year}/${month+1}/${day}")
+                etDate.setText(String.format(Locale.US, "%d/%d/%d", year, month+1, day))
             }, year, month, day)
             dialogFragment.show()
         }
