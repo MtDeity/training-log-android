@@ -85,9 +85,12 @@ class MyPageFragment : Fragment() {
 
             val urlStr = "https://mukimukiroku.herokuapp.com/users/${id}"
             val url = URL(urlStr)
+            Log.i("AccountSuccess", "0")
 
             try {
+                Log.i("AccountSuccess", "1")
                 urlConnection = url.openConnection() as HttpURLConnection
+                Log.i("AccountSuccess", "2")
                 urlConnection.connectTimeout = 100000
                 urlConnection.readTimeout = 100000
                 urlConnection.requestMethod = "GET"
@@ -95,6 +98,7 @@ class MyPageFragment : Fragment() {
                 urlConnection.addRequestProperty("Authorization", "Bearer $token")
                 urlConnection.doOutput = false
                 urlConnection.doInput = true
+                Log.i("AccountSuccess", "3")
                 urlConnection.connect()
                 Log.i("AccountSuccess", urlConnection.toString())
                 Log.i("AccountSuccess", "a")

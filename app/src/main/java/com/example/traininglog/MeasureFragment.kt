@@ -1,15 +1,10 @@
 package com.example.traininglog
 
 import android.app.DatePickerDialog
-import android.app.Dialog
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
-import android.widget.DatePicker
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_measure.*
 import java.time.LocalDate

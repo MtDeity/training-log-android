@@ -8,13 +8,9 @@ import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
-import android.view.inputmethod.InputMethodManager
-import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.content.edit
 import androidx.fragment.app.DialogFragment
 import androidx.preference.PreferenceManager
-import kotlinx.android.synthetic.main.activity_sign_in.*
 import java.io.BufferedReader
 import java.io.InputStream
 import java.io.InputStreamReader
