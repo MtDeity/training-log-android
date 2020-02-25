@@ -30,7 +30,7 @@
     <string name="newData">新規入力</string>
     <string name="weight">体重(kg)</string>
     <string name="date">日付</string>
-    <string name="measureHistory">計測記録</string>
+    <string name="measureHistory">計測履歴</string>
     <string name="record">記録する</string>
     <string name="advanced">追加項目を開く</string>
 

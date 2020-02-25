@@ -2,6 +2,7 @@ package com.example.traininglog
 
 import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
 import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
@@ -17,6 +18,7 @@ import java.io.InputStream
 import java.io.InputStreamReader
 import java.io.PrintStream
 import java.net.HttpURLConnection
+import java.net.InetAddress
 import java.net.URL
 
 

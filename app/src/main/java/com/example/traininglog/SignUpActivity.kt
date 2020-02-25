@@ -77,6 +77,7 @@ class SignUpActivity : AppCompatActivity() {
                 urlConnection.addRequestProperty("Content-Type", "application/json; charset=UTF-8")
                 urlConnection.doOutput = true
                 urlConnection.doInput = true
+                Log.i("SignUpSuccess", "0")
                 urlConnection.connect()
                 val outputStream = PrintStream(urlConnection.outputStream)
                 outputStream.print(bodyParameter)
