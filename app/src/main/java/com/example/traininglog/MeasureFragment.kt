@@ -33,6 +33,9 @@ class MeasureFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_measure, container, false)
     }
 
+//    val measureHistoru = mutableListOf<Measure>()
+//    private lateinit var recycleViewAdapter: RecycleViewAdapter
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
@@ -154,6 +157,12 @@ class MeasureFragment : Fragment() {
         }
     }
 
-
-
+//    data class Measure(val body_weight: Double, val date: String)
+//
+//    class MeasureViewHolder(view: View) : RecyclerView.ViewHolder(view){
+//        val avatar: ImageView = view.findViewById(R.id.avatar)
+//        val tvName: TextView = view.findViewById(R.id.tv_name)
+//        val tvText: TextView = view.findViewById(R.id.tv_text)
+//        val postedAt: TextView = view.findViewById(R.id.posted_at)
+//    }
 }

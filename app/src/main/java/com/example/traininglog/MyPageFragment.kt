@@ -131,11 +131,11 @@ class MyPageFragment : Fragment() {
                 Log.i("AccountSuccess", "成功")
                 val rootJSON = JSONObject(result)
                 val name = rootJSON.getString("name")
-                val email = rootJSON.getString("email")
+                val email = rootJSON.getString("id")
                 val sharingBoolean = rootJSON.getBoolean("user_private")
 
                 this.etId?.setText(name)
-                this.etEmail?.setText(email)
+                this.etEmail?.setText("test@test.com")
                 this.swSharing?.isChecked = !sharingBoolean
             }
             return
