@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/trainingFragment"
+        android:icon="@drawable/training"
+        android:title="@string/training"/>
+    <item
+        android:id="@+id/routineFragment"
+        android:icon="@drawable/routine"
+        android:title="@string/routine"/>
+
+    <item
+        android:id="@+id/measureFragment"
+        android:icon="@drawable/measure"
+        android:title="@string/measure"/>
+
+    <item
+        android:id="@+id/timerFragment"
+        android:icon="@drawable/timer"
+        android:title="@string/timer"/>
+
+    <item
+        android:id="@+id/myPageFragment"
+        android:icon="@drawable/my_page"
+        android:title="@string/myPage"/>
+
+</menu>
